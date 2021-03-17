@@ -134,7 +134,6 @@ func (b *HitBtc) GetAllTicker() (tickers Tickers, err error) {
 	return
 }
 
-
 // Market
 
 // GetOrderbook is used to get the current order book for a market.
@@ -153,7 +152,6 @@ func (b *HitBtc) GetOrderbook(market string) (orderbook Orderbook, err error) {
 	err = json.Unmarshal(r, &orderbook)
 	return
 }
-
 
 // Account
 
@@ -292,9 +290,9 @@ func (b *HitBtc) PlaceOrder(requestOrder Order) (responseOrder Order, err error)
 	payload["symbol"] = requestOrder.Symbol
 	payload["side"] = requestOrder.Side
 	payload["type"] = requestOrder.Type
-	payload["timeInForce"] = requestOrder.TimeInForce
-	payload["quantity"] = fmt.Sprintf("%.8f", requestOrder.Quantity)
-	payload["price"] = fmt.Sprintf("%.8f", requestOrder.Price)
+	//	payload["timeInForce"] = requestOrder.TimeInForce
+	payload["quantity"] = fmt.Sprintf("%.0f", requestOrder.Quantity)
+	//payload["price"] = fmt.Sprintf("%.8f", requestOrder.Price)
 
 	method := "POST"
 	resource := "order"
@@ -305,6 +303,7 @@ func (b *HitBtc) PlaceOrder(requestOrder Order) (responseOrder Order, err error)
 	}
 
 	r, err := b.client.do(method, resource, payload, true)
+	fmt.Println(string(r))
 	if err != nil {
 		return
 	}
