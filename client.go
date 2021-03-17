@@ -103,7 +103,7 @@ func (c *client) do(method string, resource string, payload map[string]string, a
 		rawurl = fmt.Sprintf("%s/%s", API_BASE, resource)
 	}
 	var formData string
-	if method == "GET" {
+	if method == "GET" || method == "POST" {
 		var URL *url.URL
 		URL, err = url.Parse(rawurl)
 		if err != nil {
@@ -123,6 +123,7 @@ func (c *client) do(method string, resource string, payload map[string]string, a
 		}
 		formData = formValues.Encode()
 	}
+	fmt.Println(string(formData))
 	req, err := http.NewRequest(method, rawurl, strings.NewReader(formData))
 	if err != nil {
 		return
