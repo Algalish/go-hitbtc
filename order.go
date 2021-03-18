@@ -15,6 +15,7 @@ type Order struct {
 	TimeInForce   string    `json:"timeInForce"`
 	Quantity      float64   `json:"quantity,string"`
 	Price         float64   `json:"price,string"`
+	AvgPrice      float64   `json:"avgPrice,string"`
 	CumQuantity   float64   `json:"cumQuantity,string"`
 	Created       time.Time `json:"createdAt"`
 	Updated       time.Time `json:"updatedAt"`
