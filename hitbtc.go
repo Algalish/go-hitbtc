@@ -303,7 +303,7 @@ func (b *HitBtc) PlaceOrder(requestOrder Order) (responseOrder Order, err error,
 	}
 
 	r, err := b.client.do(method, resource, payload, true)
-	outputString := string(r)
+	outputString = string(r)
 	if err != nil {
 		return
 	}
