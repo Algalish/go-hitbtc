@@ -284,7 +284,7 @@ func (b *HitBtc) GetOpenOrders() (orders []Order, err error) {
 }
 
 // PlaceOrder creates a new order.
-func (b *HitBtc) PlaceOrder(requestOrder Order) (responseOrder Order, err error) {
+func (b *HitBtc) PlaceOrder(requestOrder Order) (responseOrder Order, err error, outputString string) {
 	payload := make(map[string]string, 6)
 
 	payload["symbol"] = requestOrder.Symbol
@@ -303,7 +303,7 @@ func (b *HitBtc) PlaceOrder(requestOrder Order) (responseOrder Order, err error)
 	}
 
 	r, err := b.client.do(method, resource, payload, true)
-	fmt.Println(string(r))
+	outputString := string(r)
 	if err != nil {
 		return
 	}
